@@ -1,0 +1,94 @@
+<!DOCTYPE html><html lang="mr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>दिवाळी धमाका फायरवर्क्स – WhatsApp ऑर्डर</title>
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff7e8;--card:#fff;--ink:#3b0a4f;--mut:#7a5a8a;--p:#5b1a78;--m:#c2185b;--g:#ffc83d;--line:#f0dcea;--wa:#1faa59}
+:root{color-scheme:light dark}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1a0827;--card:#2a1240;--ink:#fbeaff;--mut:#c9a8d8;--line:#432060}}
+:root[data-theme="dark"]{--bg:#1a0827;--card:#2a1240;--ink:#fbeaff;--mut:#c9a8d8;--line:#432060}
+*{box-sizing:border-box;margin:0}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{background:var(--bg);color:var(--ink);font-family:'Mukta','Noto Sans Devanagari','Mangal',sans-serif;font-weight:500;padding-bottom:110px}
+:root{padding-top:env(safe-area-inset-top,0px)}
+header{background:linear-gradient(160deg,#7a1fa2,#b0136f);color:#fff;text-align:center;padding:18px 14px 22px;border-radius:0 0 28px 28px}
+header small{color:var(--g);font-weight:700}
+h1{font-size:30px;font-weight:800;color:var(--g);line-height:1.2;margin:4px 0}
+header p{font-size:16px}
+.chips{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px}
+.chips span{background:#fff;color:var(--m);font-weight:800;border-radius:20px;padding:4px 12px;font-size:14px}
+.wrap{max-width:640px;margin:0 auto;padding:14px}
+.search{width:100%;padding:12px 16px;border-radius:14px;border:2px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:16px}
+.ship{margin:12px 0;background:var(--card);border:2px dashed var(--g);border-radius:14px;padding:10px 12px;font-weight:700;font-size:14px}
+.bar{height:8px;background:var(--line);border-radius:6px;margin-top:6px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--g),var(--m));width:0;transition:width .3s}
+.item{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin-bottom:8px}
+.item .n{flex:1;font-weight:700;font-size:15px;line-height:1.25}
+.item .n em{display:block;font-style:normal;color:var(--m);font-weight:800;font-size:15px}
+.step{display:flex;align-items:center;gap:8px}
+.step button{width:36px;height:36px;border-radius:50%;border:0;background:var(--m);color:#fff;font-size:22px;font-weight:800;cursor:pointer}
+.step button.minus{background:var(--line);color:var(--ink)}
+.step b{min-width:22px;text-align:center;font-size:17px}
+#cartbar{position:fixed;left:0;right:0;bottom:0;padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));background:var(--card);border-top:2px solid var(--g);display:none;z-index:5}
+#cartbar .in{max-width:640px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.btn{border:0;border-radius:30px;padding:13px 22px;font:inherit;font-weight:800;font-size:17px;cursor:pointer;background:var(--wa);color:#fff;text-decoration:none;display:inline-block;text-align:center}
+.sheet{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:flex-end;z-index:9}
+.sheet.on{display:flex}
+.panel{background:var(--bg);width:100%;max-width:640px;margin:0 auto;border-radius:24px 24px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px));max-height:92%;overflow:auto}
+.panel h2{font-size:22px;color:var(--m);margin-bottom:8px}
+.sum{font-size:14px;color:var(--mut);margin-bottom:10px;line-height:1.5}
+label{display:block;font-weight:700;margin:10px 0 4px;font-size:14px}
+.f{width:100%;padding:11px 14px;border-radius:12px;border:2px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:16px}
+.tot{display:flex;justify-content:space-between;font-weight:800;font-size:18px;margin:12px 0}
+.err{color:#d32f2f;font-weight:700;font-size:14px;min-height:18px}
+.x{float:right;background:none;border:0;font-size:26px;color:var(--ink);cursor:pointer}
+footer{text-align:center;color:var(--mut);font-size:13px;padding:10px 14px}
+</style></head><body>
+<header><small>॥ श्री गणेशाय नमः ॥</small><h1>दिवाळी धमाका फायरवर्क्स</h1><p>आवडते फटाके निवडा आणि WhatsApp वर ऑर्डर पाठवा!</p>
+<div class="chips"><span>₹३५ पासून सुरू</span><span>₹१००० वर घरपोच डिलिव्हरी</span></div></header>
+<div class="wrap">
+<input class="search" id="q" placeholder="फटाके शोधा… (उदा. bomb, rocket, chakkar)">
+<div class="ship" id="ship">₹१००० च्या खरेदीवर घरपोच डिलिव्हरी मोफत!<div class="bar"><i id="bi"></i></div></div>
+<div id="list"></div></div>
+<footer>ऑर्डर पाठवल्यावर आमचा प्रतिनिधी WhatsApp वर तुम्हाला खात्री (confirmation) करेल.<br>सर्व किमती रुपयांत (₹). Pkt = पॅकेट, Pc = नग.</footer>
+
+<div id="cartbar"><div class="in"><div><div style="font-size:13px;color:var(--mut)" id="cc"></div><b style="font-size:20px" id="ct"></b></div><button class="btn" id="go" style="background:var(--m)">ऑर्डर द्या ›</button></div></div>
+
+<div class="sheet" id="sh"><div class="panel">
+<button class="x" id="cl" aria-label="बंद">×</button><h2>तुमची ऑर्डर</h2>
+<div class="sum" id="sum"></div>
+<div class="tot"><span>एकूण</span><span id="tt"></span></div>
+<label>तुमचं नाव *</label><input class="f" id="nm" autocomplete="name">
+<label>मोबाईल नंबर</label><input class="f" id="ph" inputmode="tel" autocomplete="tel">
+<label>डिलिव्हरी पत्ता (घरपोच हवं असल्यास)</label><textarea class="f" id="ad" rows="2"></textarea>
+<label>ऑर्डर कोणाला पाठवायची?</label>
+<select class="f" id="to"></select>
+<div class="err" id="er"></div>
+<button class="btn" id="send" style="width:100%;margin-top:8px">WhatsApp वर ऑर्डर पाठवा</button>
+</div></div>
+
+<script>
+const ITEMS=[["Radhika Roll",120,"Pkt"],["Standard Jumping Frog",195,"Pkt"],["Tamrai Kanan 3.50\" Laxmi / Parrot / Lady",35,"Pc"],["Mahavilam 3.50\" Laxmi",35,"Pc"],["RR 1K",500,"Pc"],["Kaniskarr FW 12 Shot Magic Star",350,"Pc"],["Jai Durga 12 cm 50-50",55,"Pkt"],["Sri Ram 12 cm Mahima Red",70,"Pkt"],["Coronation Ashoka Zamin Chakkar",145,"Pkt"],["Coronation Flower Pot Ashoka",315,"Pkt"],["Classic 15 cm Green",70,"Pkt"],["Classic Magic 12 cm Colour",50,"Pkt"],["Sarnavel FW 1.25\" Fancy (5x1) Tango",720,"Pkt"],["Coronation 2\" Mini Hollywood Fancy",600,"Pkt"],["Sarnavel FW Kit Kat Zig Zag",65,"Pkt"],["Indian National Small Flower Pot",135,"Pkt"],["Classic Magic AB 15 cm Colour",75,"Pkt"],["Jai Durga 15 cm Red",100,"Pkt"],["Sarnavel FW Special Ground Chakkar",160,"Pkt"],["Tamrai Kanan Red Bijili",70,"Thaili"],["Shree Pyrotech Bullet Bomb",40,"Pkt"],["Sri Krishna Two Sound Crackers",90,"Pkt"],["Terkhaeda Reg Bomb",120,"Pkt"],["Tiger & Royal FW Bomb Rocket",150,"Pkt"],["Sri Krishna Symphony Rocket Small",220,"Pkt"],["Anmol Ghatak 6",70,"Pc"],["Anmol Victor (12X)",44,"Pc"],["Anmol Fighter (8X)",40,"Pc"],["Indian National Seven Shots Colour",310,"Pkt"],["Vanitha @ Night",360,"Pkt"],["Tamrai Kanan Ashoka Flower Pot",260,"Pkt"],["Standard Disco Flash",145,"Pkt"],["Standard Terminator Bomb Green",220,"Pkt"],["Kaniskarr FW Colour Koti Gold Deluxe",800,"Pkt"],["Shanmunga King of King Bomb",200,"Pkt"],["Pandyn Black Serpent Small (100x1)",350,"Pkt"],["Jai Durga Chanda 9 cm",140,"Pkt"],["Matchis New",300,"Pc"],["PP Box Small (50x1)",600,"Pc"]];
+const TEAM=[["विराज टक्के","919082113812"],["राज भागडे","919307123625"],["प्रथमेश धनावडे","918087836996"],["सौरभ तांबट","917304887336"],["गणेश रटाटे","917767939402"],["परिस चव्हाण","918698068478"]];
+const FREE=1000, UN={Pkt:"पॅकेट",Pc:"नग",Thaili:"थैली"};
+const MD="०१२३४५६७८९";const md=n=>String(n).replace(/\d/g,d=>MD[d]);
+const cart={};const $=i=>document.getElementById(i);
+const total=()=>ITEMS.reduce((s,it,i)=>s+(cart[i]||0)*it[1],0);
+const count=()=>Object.values(cart).reduce((a,b)=>a+b,0);
+function render(){const q=$('q').value.toLowerCase().trim();$('list').innerHTML=ITEMS.map((it,i)=>!q||it[0].toLowerCase().includes(q)?
+`<div class="item"><div class="n">${it[0].replace(/&/g,'&amp;').replace(/"/g,'&quot;')}<em>₹${md(it[1])} / ${UN[it[2]]}</em></div><div class="step"><button class="minus" data-i="${i}" data-d="-1">−</button><b>${md(cart[i]||0)}</b><button data-i="${i}" data-d="1">+</button></div></div>`:'').join('')}
+function upd(){const t=total(),c=count();$('cartbar').style.display=c?'block':'none';$('cc').textContent=md(c)+' नग निवडले';$('ct').textContent='₹'+md(t);
+const r=FREE-t;$('bi').style.width=Math.min(100,t/FREE*100)+'%';$('ship').firstChild.textContent=r>0?`आणखी ₹${md(r)} ची खरेदी करा – घरपोच डिलिव्हरी मोफत!`:'अभिनंदन! तुम्हाला घरपोच डिलिव्हरी मोफत मिळेल!'}
+$('list').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const i=+b.dataset.i;cart[i]=Math.max(0,(cart[i]||0)+ +b.dataset.d);render();upd();window.scrollBy(0,0)});
+$('q').addEventListener('input',render);
+$('to').innerHTML='<option value="auto">कोणीही (आपोआप)</option>'+TEAM.map((t,i)=>`<option value="${i}">${t[0]}</option>`).join('');
+function lines(){return ITEMS.map((it,i)=>cart[i]?`• ${it[0]} × ${cart[i]} ${it[2]} = ₹${cart[i]*it[1]}`:'').filter(Boolean)}
+$('go').onclick=()=>{$('sum').innerHTML=lines().map(l=>l.replace(/&/g,'&amp;')).join('<br>');$('tt').textContent='₹'+md(total());$('er').textContent='';$('sh').classList.add('on')};
+$('cl').onclick=()=>$('sh').classList.remove('on');
+$('send').onclick=()=>{const n=$('nm').value.trim(),a=$('ad').value.trim(),p=$('ph').value.trim();
+if(!n){$('er').textContent='कृपया तुमचं नाव लिहा.';return}
+const t=total();let sel=$('to').value;const to=TEAM[sel==='auto'?Math.floor(Math.random()*TEAM.length):+sel][1];
+const msg=`नमस्कार! 🎆 दिवाळी धमाका फायरवर्क्स – नवी ऑर्डर\n\n${lines().join('\n')}\n\nएकूण: ₹${t}\n${t>=FREE?'घरपोच डिलिव्हरी: मोफत':''}\n\nनाव: ${n}\n${p?'मोबाईल: '+p+'\n':''}${a?'पत्ता: '+a:'पत्ता: (स्वतः घेऊन जाणार)'}\n\nकृपया ऑर्डर कन्फर्म करा. धन्यवाद!`;
+const url='https://wa.me/'+to+'?text='+encodeURIComponent(msg);
+if(!window.open(url,'_blank'))location.href=url};
+render();upd();
+</script></body></html>
